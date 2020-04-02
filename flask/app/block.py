@@ -4,13 +4,16 @@ import hashlib
 
 blockchain_dir = os.curdir + '/blockchain/'
 
+
 def get_hash(filename):
     file = open(blockchain_dir + filename, 'rb').read()
     return hashlib.md5(file).hexdigest()
 
+
 def get_files():
     files = os.listdir(blockchain_dir)
     return sorted([int(i) for i in files])
+
 
 def check_integrity():
     files = get_files()
@@ -28,6 +31,7 @@ def check_integrity():
         results.append({'block': prev_file, 'result': res})
 
     return results
+
 
 def write_block(name, amount, to_whom, prev_hash=''):
     files = get_files()
@@ -48,6 +52,7 @@ def write_block(name, amount, to_whom, prev_hash=''):
 def main():
     # write_block(name='oleg', amount=5, to_whom='xenia')
     print(check_integrity())
+
 
 if __name__ == '__main__':
     main()
